@@ -88,9 +88,10 @@ class Reviews{
         this.filter();
         if (this._review.length !== 0){
           this.addReview(this._review, product.childNodes[1].innerText);
-          input.forEach(el => {
+          errMessage.forEach(el => {
             el.classList.remove('color');
-            el.placeholder = "Напишите комментарий";
+            // el.placeholder = "Напишите комментарий";
+            el.innerHTML = '';
           });
         }
         this._review = '';
@@ -126,9 +127,9 @@ class Reviews{
     for (let i = 0; i < input.length; i++){
       try{
         if (input[i].value.length !== 0){
-          if (input[i].value.length < 50){
+          if (input[i].value.length < 5){
             throw new Error('Вы слишком мало написали!');
-          }else if (input[i].value.length > 500){
+          }else if (input[i].value.length > 50){
             throw new Error(`У вас слишком большой комментарий!`)
           }else{
             this._review = input[i].value;
@@ -136,8 +137,10 @@ class Reviews{
           }
         }
       }catch(err){
-        input[i].className = 'color';
-        input[i].placeholder = err.message;
+        errMessage[i].className = 'color';
+        errMessage[i].innerHTML = err.message;
+        // input[i].className = 'color';
+        // input[i].placeholder = err.message;
       }finally{
         input[i].value = '';
       }

@@ -64,7 +64,11 @@ li{
     gap: 10px;
 }
 
-.color::placeholder{
+.color{
     color: red;
     font-size: 18px;
 }
+/* .color::placeholder{
+    color: red;
+    font-size: 18px;
+} */
